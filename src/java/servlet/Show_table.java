@@ -34,14 +34,15 @@ public class Show_table extends HttpServlet {
         pw.println("</head>");
         pw.println("<body>");
         pw.println("<div class='container'>");
-        pw.println("<h2>Striped Rows</h2>");
-        pw.println("<p>The .table-striped class adds zebra-stripes to a table:</p>");            
+        pw.println("<h2><b><center>Student Data</center></b></h2>");           
         pw.println("<table class='table table-striped'>");
         pw.println("<thead>");
         pw.println("<tr>");
         pw.println("<th>Firstname</th>");
-        pw.println("<th>Lastname</th>");
         pw.println("<th>Email</th>");
+        pw.println("<th>Enrollment</th>");
+        pw.println("<th>Update</th>");
+        pw.println("<th>Delete</th>");
         pw.println("</tr>");
         pw.println("</thead>");
         pw.println("<tbody>");
@@ -51,6 +52,8 @@ public class Show_table extends HttpServlet {
             pw.println("<td>John</td>");
             pw.println("<td>Doe</td>");
             pw.println("<td>john@example.com</td>");
+            pw.println("<td><button type='button' class='btn btn-primary'>Primary</button></td>");
+            pw.println("<td><button type='button' class='btn btn-danger'>Danger</button></td>");
             pw.println("</tr>");            
         }
         pw.println("</tbody>");
