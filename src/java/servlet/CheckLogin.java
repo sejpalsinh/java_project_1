@@ -22,7 +22,7 @@ public class CheckLogin extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
          resp.setContentType("text/html;charset=UTF-8");
         if(StudentDAO.Student_data.check_user(req.getParameter("uname"),req.getParameter("pass")))
-            resp.sendRedirect("logon.html");
+            resp.sendRedirect("Show_table");
         else
             resp.sendRedirect("index.html");
     }
