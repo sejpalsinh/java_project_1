@@ -5,7 +5,6 @@
  */
 package servlet;
 
-import POJOs.Students;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -13,19 +12,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class Students_Servlet extends HttpServlet {
+/**
+ *
+ * @author sejpalsinh
+ */
+public class Student_Delete extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String name,email,e_num,pass;
-        name = req.getParameter("name");
-        email = req.getParameter("email");
-        e_num = req.getParameter("enum");
-        pass = req.getParameter("psw");
-        Students se = new Students(name, email, pass, e_num);
-        StudentDAO.Student_data.save(se);
-        resp.sendRedirect("index.html");
+        resp.setContentType("text/html;charset=UTF-8");
+        
+        int i = StudentDAO.Student_data_connection.delete(Integer.parseInt(req.getParameter("sid")));
+        PrintWriter pw = resp.getWriter();
+        if(i==1)
+            pw.println("Record deleted Successfully");
+        else
+            pw.println("Error While deleting Record");
     }
 
-  
 }

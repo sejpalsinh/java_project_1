@@ -13,13 +13,15 @@ import com.mysql.jdbc.PreparedStatement;
 import java.sql.DriverManager;
 import POJOs.*;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
  * @author sejpalsinh
  */
-public class Student_data {
+public class Student_data_connection {
 
     public static Connection getConnection() {
         Connection con = null;
@@ -35,7 +37,7 @@ public class Student_data {
     public static int save(Students s) {
         int status = 0;
         try {
-            Connection con = Student_data.getConnection();
+            Connection con = Student_data_connection.getConnection();
             PreparedStatement ps = (PreparedStatement) con.prepareStatement("INSERT INTO `student_data`( `name`, `email`, `enumber`, `pass`) VALUES (?,?,?,?)");
             ps.setString(1, s.getName());
             ps.setString(2, s.getEmail());
@@ -50,35 +52,36 @@ public class Student_data {
         return status;
     }
 
-    public static int update(Students s, String t_enum) {
+    public static int update(String name,String email,String enroll, int sid) {
         int status = 0;
         try {
-            Connection con = Student_data.getConnection();
-            PreparedStatement ps = (PreparedStatement) con.prepareStatement("UPDATE `student_data` SET `name`= '?' ,`email`= '?',`enumber`='?',`pass`='?' WHERE `enumber`='?' ");
-            ps.setString(1, s.getName());
-            ps.setString(2, s.getEmail());
-            ps.setString(3, s.getEnumber());
-            ps.setString(4, s.getPass());
-            ps.setString(5, t_enum);
-            status = ps.executeUpdate();
+            Connection con = Student_data_connection.getConnection();
+            Statement stmt = null;
+            stmt = (Statement) con.createStatement();
+            String query1 = "UPDATE `student_data` SET `name`= '"+name+"' ,`email`= '"+email+"',`enumber`='"+enroll+"' WHERE `id`="+sid+" ";
+            int i = stmt.executeUpdate(query1);
+            System.out.println(query1);
             con.close();
-        } catch (Exception ex) {
-            ex.printStackTrace();
+            return i;
+        } catch (SQLException ex) {
+            return 0;
         }
 
-        return status;
+       
     }
 
-    public static int delete(String t_enum) {
+    public static int delete(int sid) {
         int status = 0;
         try {
-            Connection con = Student_data.getConnection();
-            PreparedStatement ps = (PreparedStatement) con.prepareStatement("DELETE FROM `student_data` WHERE `enumber`='?' ");
-            ps.setString(1, t_enum);
+            Connection con = Student_data_connection.getConnection();
+            PreparedStatement ps = (PreparedStatement) con.prepareStatement("DELETE FROM `student_data` WHERE `id`= ? ");
+            ps.setInt(1, sid);
+            System.out.print(ps);
             status = ps.executeUpdate();
             con.close();
         } catch (Exception ex) {
             ex.printStackTrace();
+            System.out.print(ex);
         }
 
         return status;
@@ -88,7 +91,7 @@ public class Student_data {
         int status = 0;
         try {
             Statement stmt = null;
-            Connection con = Student_data.getConnection();
+            Connection con = Student_data_connection.getConnection();
             stmt = con.createStatement();
 
             String sql = "SELECT `id` FROM `student_data` WHERE `email`='"+uname+"'  AND `pass` ='"+pass+"'";

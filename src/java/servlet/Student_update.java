@@ -16,15 +16,16 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author sejpalsinh
  */
-public class CheckLogin extends HttpServlet {
-
-    @Override
+public class Student_update extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-         resp.setContentType("text/html;charset=UTF-8");
-        if(StudentDAO.Student_data_connection.check_user(req.getParameter("uname"),req.getParameter("pass")))
-            resp.sendRedirect("Student_Data_Show");
+        resp.setContentType("text/html;charset=UTF-8");
+        int i = StudentDAO.Student_data_connection.update(req.getParameter("name"),req.getParameter("email"),req.getParameter("enroll"),Integer.parseInt(req.getParameter("sid")));
+        PrintWriter pw = resp.getWriter();
+        //pw.print(i);
+        //System.out.print(i);
+        if(i==1)
+            pw.println("Record Updated Successfully");
         else
-            resp.sendRedirect("index.html");
+            pw.println("Error While Updating Record");
     }
-    
 }

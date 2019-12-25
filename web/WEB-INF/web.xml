@@ -1,28 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
-        <servlet-name>Students_Servlet</servlet-name>
-        <servlet-class>servlet.Students_Servlet</servlet-class>
+        <servlet-name>Students_Save</servlet-name>
+        <servlet-class>servlet.Students_Save</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CheckLogin</servlet-name>
         <servlet-class>servlet.CheckLogin</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Show_table</servlet-name>
-        <servlet-class>servlet.Show_table</servlet-class>
+        <servlet-name>Student_Data_Show</servlet-name>
+        <servlet-class>servlet.Student_Data_Show</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Student_update</servlet-name>
+        <servlet-class>servlet.Student_update</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Student_Delete</servlet-name>
+        <servlet-class>servlet.Student_Delete</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>Students_Servlet</servlet-name>
-        <url-pattern>/Students_Servlet</url-pattern>
+        <servlet-name>Students_Save</servlet-name>
+        <url-pattern>/Students_Save</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CheckLogin</servlet-name>
         <url-pattern>/CheckLogin</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Show_table</servlet-name>
-        <url-pattern>/Show_table</url-pattern>
+        <servlet-name>Student_Data_Show</servlet-name>
+        <url-pattern>/Student_Data_Show</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Student_update</servlet-name>
+        <url-pattern>/Student_update</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Student_Delete</servlet-name>
+        <url-pattern>/Student_Delete</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

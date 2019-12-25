@@ -5,6 +5,7 @@
  */
 package servlet;
 
+import POJOs.Students;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -12,19 +13,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author sejpalsinh
- */
-public class CheckLogin extends HttpServlet {
+public class Students_Save extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-         resp.setContentType("text/html;charset=UTF-8");
-        if(StudentDAO.Student_data_connection.check_user(req.getParameter("uname"),req.getParameter("pass")))
-            resp.sendRedirect("Student_Data_Show");
-        else
-            resp.sendRedirect("index.html");
+        String name,email,e_num,pass;
+        name = req.getParameter("name");
+        email = req.getParameter("email");
+        e_num = req.getParameter("enum");
+        pass = req.getParameter("psw");
+        Students se = new Students(name, email, pass, e_num);
+        StudentDAO.Student_data_connection.save(se);
+        resp.sendRedirect("index.html");
     }
-    
+
+  
 }
